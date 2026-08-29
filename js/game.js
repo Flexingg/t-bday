@@ -8,13 +8,12 @@ class ImpossibleQuizGame {
         this.timeLeft = 0;
         this.cleanupListeners = [];
         this.customTimerCallback = null;
-        this.totalQuestions = window.LEVELS.length;
+        this.totalQuestions = (window.LEVELS && window.LEVELS.length) ? window.LEVELS.length : 100;
 
         // Cache DOM elements
         this.elStage = document.getElementById('stage-container');
         this.elLevelBadge = document.getElementById('level-display');
         this.elLivesBox = document.querySelector('.lives-box');
-        this.elHearts = document.querySelectorAll('.life-heart');
         this.elSkips = document.getElementById('skip-count');
         this.elBombBar = document.getElementById('bomb-timer-bar');
         this.elBombText = document.getElementById('bomb-seconds');
@@ -52,6 +51,10 @@ class ImpossibleQuizGame {
         const btnSkip = document.getElementById('btn-skip');
         if (btnSkip) {
             btnSkip.onclick = () => {
+                if (this.isEternal) {
+                    this.showToast("No skips allowed in Eternal Sudden Death!", "wrong");
+                    return;
+                }
                 if (this.skips > 0 && this.currentLevelIdx < this.totalQuestions - 1) {
                     this.skips--;
                     this.updateHUD();
@@ -69,16 +72,27 @@ class ImpossibleQuizGame {
             btnRestart.onclick = () => this.restartGame();
         }
 
+        // Direct Start Screen button listeners as fallback
+        const startClassic = document.getElementById('btn-start-classic');
+        if (startClassic) {
+            startClassic.onclick = () => this.start();
+        }
+        const startEternal = document.getElementById('btn-start-eternal');
+        if (startEternal) {
+            startEternal.onclick = () => this.startEternalMode();
+        }
+
         // Secret testing hotkey: Press Shift + N to jump to next level (for dev testing)
         window.addEventListener('keydown', (e) => {
             if (e.shiftKey && (e.key === 'N' || e.key === 'n')) {
-                console.log("Dev Skip triggered");
+                console.log("Dev Skip triggered to level:", this.currentLevelIdx + 2);
                 this.nextLevel();
             }
         });
     }
 
     start() {
+        this.clearTimersAndListeners();
         this.isEternal = false;
         this.lives = 3;
         this.skips = 1;
@@ -92,11 +106,10 @@ class ImpossibleQuizGame {
         this.isEternal = true;
         this.lives = 1; // 1 strike = out (0 extra lives)
         this.skips = 0; // No skips in sudden death!
-        this.currentLevelIdx = 30; // Starts at Level 31
-        window.sound.playFanfare();
-        this.showToast("💀 ENTERING ETERNAL MODE: SUDDEN DEATH! 💀", "wrong");
+        this.currentLevelIdx = 30; // Level 31 is index 30 in array
         this.updateHUD();
         this.loadLevel(30);
+        this.showToast("💀 ENTERING ETERNAL MODE: SUDDEN DEATH! 💀", "wrong");
     }
 
     restartGame() {
@@ -127,7 +140,7 @@ class ImpossibleQuizGame {
         if (this.elLivesBox) {
             if (this.isEternal) {
                 this.elLivesBox.innerHTML = `
-                    <span style="font-size: 14px; font-weight: 900; color: #ff3366; background: rgba(0,0,0,0.6); padding: 4px 10px; border-radius: 8px; border: 2px solid #ff3366;">
+                    <span style="font-size: 13px; font-weight: 900; color: #ff3366; background: rgba(0,0,0,0.6); padding: 4px 10px; border-radius: 8px; border: 2px solid #ff3366; letter-spacing: 1px;">
                         💀 SUDDEN DEATH (0 LIVES)
                     </span>
                 `;
@@ -161,8 +174,8 @@ class ImpossibleQuizGame {
         this.currentLevelIdx = idx;
         this.updateHUD();
 
-        const lvl = window.LEVELS[idx];
-        if (!lvl) {
+        if (!window.LEVELS || !window.LEVELS[idx]) {
+            console.error("Level not found at index:", idx);
             if (this.isEternal) {
                 this.triggerEternalVictory();
             } else {
@@ -170,6 +183,8 @@ class ImpossibleQuizGame {
             }
             return;
         }
+
+        const lvl = window.LEVELS[idx];
 
         // Render standard question or interactive
         let html = `
@@ -207,7 +222,7 @@ class ImpossibleQuizGame {
             });
         }
 
-        // Run level custom setup script
+        // Run level custom setup script if present
         if (typeof lvl.setup === 'function') {
             lvl.setup(this.elStage, this);
         }
@@ -266,7 +281,7 @@ class ImpossibleQuizGame {
 
         setTimeout(() => {
             this.nextLevel();
-        }, 600);
+        }, 500);
     }
 
     nextLevel() {
@@ -338,7 +353,7 @@ class ImpossibleQuizGame {
                 <div style="font-size: 16px; margin-bottom: 20px;">You made it to <strong>Level ${this.currentLevelIdx + 1}</strong> of 30</div>
                 <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
                     <button class="start-btn" onclick="window.game.start()">🔄 TRY AGAIN</button>
-                    <button class="start-btn" style="background:#ff3366; color:#fff;" onclick="window.game.startEternalMode()">🔥 TRY ETERNAL MODE</button>
+                    <button class="start-btn" style="background: linear-gradient(90deg, #ff1744, #ff9100); color:#fff;" onclick="window.game.startEternalMode()">🔥 ENTER ETERNAL MODE</button>
                 </div>
             </div>
         `;
@@ -362,7 +377,7 @@ class ImpossibleQuizGame {
                     You survived to <strong>Level ${this.currentLevelIdx + 1} / 100</strong>
                 </div>
                 <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                    <button class="start-btn" style="background:#ff3366; color:#fff;" onclick="window.game.startEternalMode()">
+                    <button class="start-btn" style="background: linear-gradient(90deg, #ff1744, #ff9100); color:#fff;" onclick="window.game.startEternalMode()">
                         🔥 RETRY ETERNAL MODE (Lvl 31)
                     </button>
                     <button class="start-btn" onclick="window.game.start()">
@@ -410,9 +425,9 @@ class ImpossibleQuizGame {
                             🔥 THE ULTIMATE CHALLENGE AWAITS 🔥
                         </div>
                         <p style="font-size: 13px; color: #ccc; margin-bottom: 14px;">
-                            Think you're a true trivia god? 70 additional hardcore questions (Levels 31 - 100). <strong>ZERO LIVES / SUDDEN DEATH.</strong>
+                            70 additional hardcore questions (Levels 31 - 100). <strong>ZERO LIVES / SUDDEN DEATH.</strong>
                         </p>
-                        <button class="start-btn pulse-anim" style="background: linear-gradient(90deg, #ff1744, #ff9100); color: #fff; font-size: 18px; padding: 14px 28px; width: 100%; border-color: #fff;" onclick="window.game.startEternalMode()">
+                        <button id="btn-enter-eternal-portal" class="start-btn pulse-anim" style="background: linear-gradient(90deg, #ff1744, #ff9100); color: #fff; font-size: 18px; padding: 14px 28px; width: 100%; border-color: #fff;" onclick="window.game.startEternalMode()">
                             🔥 ENTER ETERNAL MODE (Levels 31 - 100) 🔥
                         </button>
                     </div>
@@ -448,6 +463,8 @@ class ImpossibleQuizGame {
         window.confetti.rain(15000);
         window.confetti.explode(300);
 
+        const eternalMessage = 'Text the person that sent you this "I defeated 12 bananas" so they know you beat it!';
+
         this.elStage.innerHTML = `
             <div id="victory-screen">
                 <div class="victory-card" style="background: radial-gradient(circle, #311b92 0%, #000000 100%); border-color: #00e5ff; box-shadow: 0 0 60px rgba(0,229,255,0.7);">
@@ -459,10 +476,16 @@ class ImpossibleQuizGame {
                         🏆 YOU CONQUERED ALL 100 LEVELS WITH ZERO LIVES! 🏆
                     </div>
 
-                    <div style="background: rgba(0,0,0,0.7); border: 3px dashed #00e5ff; border-radius: 16px; padding: 20px; margin: 20px auto; max-width: 520px;">
-                        <p style="font-size: 18px; color: #fff; font-weight: bold; line-height: 1.6;">
-                            You survived the ultimate 100-question gauntlet without a single mistake. Your intellect is officially legendary.
-                        </p>
+                    <div class="reward-badge-container" style="border-color: #00e5ff; background: rgba(0,0,0,0.85); padding: 22px; max-width: 560px; margin: 20px auto;">
+                        <div style="color: #00e5ff; font-size: 15px; font-weight: 900; letter-spacing: 1px; margin-bottom: 12px;">
+                            📱 PROVE YOUR VICTORY:
+                        </div>
+                        <div id="eternal-msg-box" class="reward-clue-text" style="color: #ffd700; font-size: 22px; border-color: #00e5ff; line-height: 1.5; padding: 16px;">
+                            Text the person that sent you this "I defeated 12 bananas" so they know you beat it!
+                        </div>
+                        <button id="btn-copy-eternal" class="copy-btn" style="background: #00e5ff; font-size: 16px; margin-top: 10px;">
+                            📋 COPY SECRET MESSAGE
+                        </button>
                     </div>
 
                     <div style="display: flex; gap: 12px; justify-content: center; margin-top: 25px; flex-wrap: wrap;">
@@ -473,6 +496,21 @@ class ImpossibleQuizGame {
                 </div>
             </div>
         `;
+
+        const copyEternalBtn = document.getElementById('btn-copy-eternal');
+        if (copyEternalBtn) {
+            copyEternalBtn.onclick = () => {
+                navigator.clipboard.writeText(eternalMessage).then(() => {
+                    copyEternalBtn.innerText = "✅ COPIED TO CLIPBOARD!";
+                    window.sound.playCorrect();
+                    setTimeout(() => {
+                        copyEternalBtn.innerText = "📋 COPY SECRET MESSAGE";
+                    }, 2500);
+                }).catch(() => {
+                    copyEternalBtn.innerText = "✅ MESSAGE READY!";
+                });
+            };
+        }
     }
 
     showToast(msg, type = "normal") {

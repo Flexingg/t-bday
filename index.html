@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700;900&family=Press+Start+2P&display=swap" rel="stylesheet">
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/styles.css?v=eternal4">
+    <link rel="stylesheet" href="css/animations.css?v=eternal4">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎂</text></svg>">
 </head>
 <body>
@@ -61,18 +61,18 @@
                 <h1 class="game-title-hero">THE IMPOSSIBLE BIRTHDAY QUIZ</h1>
                 <p class="game-subtitle-hero">✨ Special Birthday Edition for T ✨</p>
                 
-                <div style="max-width: 520px; margin: 0 auto 25px; text-align: left; background: rgba(0,0,0,0.3); padding: 18px 24px; border-radius: 12px; border: 2px solid #415a77; font-size: 15px; line-height: 1.6;">
-                    <p>🎯 <strong>The Rules:</strong></p>
-                    <p>• <strong>Classic Quiz (1-30):</strong> 3 Lives. Beat Level 30 to reveal the Grand Prize!</p>
-                    <p>• <strong>Eternal Mode (31-100):</strong> 70 bonus brutal trivia levels with <strong>NO LIVES / SUDDEN DEATH</strong>!</p>
+                <div style="max-width: 540px; margin: 0 auto 25px; text-align: left; background: rgba(0,0,0,0.4); padding: 20px 25px; border-radius: 16px; border: 2px solid #415a77; font-size: 15px; line-height: 1.6;">
+                    <p style="margin-bottom: 8px;">🎯 <strong>Select Game Mode:</strong></p>
+                    <p style="margin-bottom: 6px;">• <strong>Classic Quiz (Levels 1 - 30):</strong> 3 Lives. Solve all 30 tricky questions to unlock T's secret birthday prize!</p>
+                    <p>• <strong>Eternal Mode (Levels 31 - 100):</strong> 70 bonus brutal trivia levels with <strong>NO LIVES / SUDDEN DEATH</strong>!</p>
                 </div>
 
                 <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 15px;">
-                    <button class="start-btn pulse-anim" onclick="window.game.start()">
+                    <button id="btn-start-classic" class="start-btn pulse-anim" style="min-width: 260px;" onclick="window.game ? window.game.start() : null">
                         🚀 START QUIZ (Levels 1-30)
                     </button>
-                    <button class="start-btn" style="background: linear-gradient(90deg, #ff1744, #ff9100); color: #fff; border-color: #fff;" onclick="window.game.startEternalMode()">
-                        🔥 ETERNAL MODE (70 Sudden Death Levels)
+                    <button id="btn-start-eternal" class="start-btn" style="min-width: 260px; background: linear-gradient(90deg, #ff1744, #ff9100); color: #fff; border-color: #fff;" onclick="window.game ? window.game.startEternalMode() : null">
+                        🔥 ETERNAL MODE (Levels 31-100)
                     </button>
                 </div>
             </div>
@@ -83,9 +83,9 @@
     <div id="feedback-toast"></div>
 
     <!-- Scripts -->
-    <script src="js/sound.js"></script>
-    <script src="js/confetti.js"></script>
-    <script src="js/levels.js"></script>
-    <script src="js/game.js"></script>
+    <script src="js/sound.js?v=eternal4"></script>
+    <script src="js/confetti.js?v=eternal4"></script>
+    <script src="js/levels.js?v=eternal4"></script>
+    <script src="js/game.js?v=eternal4"></script>
 </body>
 </html>
