@@ -1,847 +1,554 @@
-// 30 Levels for T-Bday: The Impossible Birthday Quiz
-window.LEVELS = [];
+// 30 Crazy Hard & Bizarre Trivia Levels for T-Bday: The Impossible Birthday Quiz
 
-window.LEVELS.push(
-    // LEVEL 1: Hidden Candle in Badge
+window.LEVELS = [
+    // ----------------------------------------------------
+    // LEVEL 1: Deep Space Chemical Composition
+    // ----------------------------------------------------
     {
         id: 1,
         title: "Question 1",
-        question: "How many candles are on this birthday cake?",
-        type: "interactive",
-        hint: "Look closely at the screen elements!",
-        html: `
-            <div class="interactive-stage text-center">
-                <div style="font-size: 85px; margin: 15px 0; user-select: none;">🎂</div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px;">
-                    <button class="quiz-btn fake-opt">10 Candles</button>
-                    <button class="quiz-btn fake-opt">5 Candles</button>
-                    <button class="quiz-btn fake-opt">None (Digital)</button>
-                    <button class="quiz-btn fake-opt">100 Candles</button>
-                </div>
-            </div>
-        `,
-        setup: (container, game) => {
-            container.querySelectorAll('.fake-opt').forEach(btn => {
-                btn.onclick = () => game.loseLife("Nope! Look at the candle in the Level 1 badge!");
-            });
-            const badge = document.getElementById('level-display');
-            if (badge) {
-                badge.style.cursor = 'pointer';
-                const orig = badge.innerHTML;
-                badge.innerHTML = `⭐ Level <span id="level-num" style="color:#ffeb3b; text-decoration: underline;">1 🕯️</span> / 30`;
-                badge.onclick = () => {
-                    badge.onclick = null;
-                    badge.innerHTML = orig;
-                    game.solveLevel("Aha! You found the candle in the Level 1 badge!");
-                };
-                game.cleanupListeners.push(() => {
-                    badge.onclick = null;
-                    badge.innerHTML = orig;
-                });
-            }
-        }
+        question: "Astronomers discovered that the massive Sagittarius B2 interstellar dust cloud at the center of our galaxy chemically smells and tastes like what?",
+        type: "choice",
+        hint: "Contains billions of liters of ethyl formate...",
+        options: [
+            { text: "Burnt Toast and Sulfur", correct: false, msg: "Nope! That is what Apollo astronauts said Moon dust smelled like!" },
+            { text: "Raspberries and Dark Rum", correct: true, msg: "True Astrophysics! Ethyl formate provides the aroma of rum and flavor of raspberries!" },
+            { text: "Rotten Eggs and Hydrogen", correct: false, msg: "Common on Venus, but not Sagittarius B2!" },
+            { text: "Fresh Peppermint and Vanilla", correct: false, msg: "Too refreshing for deep space!" }
+        ]
     },
 
-    // LEVEL 2: Visual Size Trick
+    // ----------------------------------------------------
+    // LEVEL 2: The Most Absurd War in History
+    // ----------------------------------------------------
     {
         id: 2,
         title: "Question 2",
-        question: "Click the LARGEST gift box!",
+        question: "In 1859, the United States and Great Britain almost went to full-scale military war over the shooting of which farm animal on San Juan Island?",
         type: "choice",
-        hint: "Literal vs Semantic size...",
+        hint: "The 1859 border standoff...",
         options: [
-            { text: "<span style='font-size: 18px;'>🎁 Tiny</span>", correct: false, msg: "That is tiny!" },
-            { text: "<span style='font-size: 28px;'>🎁 Medium</span>", correct: false, msg: "Not the largest!" },
-            { text: "<span style='font-size: 24px; font-weight: 900; letter-spacing: 2px; color:#ff4081;'>GIFT BOX</span>", correct: true, msg: "Literal typography wins every time!" },
-            { text: "<span style='font-size: 38px;'>🎁 Big</span>", correct: false, msg: "The words 'GIFT BOX' take up way more area!" }
+            { text: "A Prize-Winning Dairy Cow", correct: false, msg: "Nope, not a bovine!" },
+            { text: "A Black Berkshire Pig", correct: true, msg: "Historical Fact! The 'Pig War' escalated to 461 US soldiers and 5 British warships with 2,140 troops over one pig!" },
+            { text: "A Rooster that crowed at 4 AM", correct: false, msg: "Nope, not poultry!" },
+            { text: "A Prized Merino Sheep", correct: false, msg: "Sheep caused range wars in Texas, not the 1859 standoff." }
         ]
     },
 
-    // LEVEL 3: Bizarre Obscure History Trivia
+    // ----------------------------------------------------
+    // LEVEL 3: Incredibly Weird Parasite Biology
+    // ----------------------------------------------------
     {
         id: 3,
         title: "Question 3",
-        question: "In 1325, a brutal 12-year war broke out between Bologna and Modena over what stolen object?",
+        question: "Which creature biologically possesses 32 brains, 10 stomachs, 18 testicles, and 5 pairs of eyes?",
         type: "choice",
-        hint: "Medieval Italian drama...",
+        hint: "Used in ancient and modern reconstructive medicine...",
         options: [
-            { text: "A solid gold communion chalice", correct: false, msg: "Nope, too dignified." },
-            { text: "A wooden oak water bucket", correct: true, msg: "Historical fact! The War of the Oaken Bucket!" },
-            { text: "The Pope prized hunting hound", correct: false, msg: "Nope, not a dog!" },
-            { text: "An 80-pound wheel of Parmigiano", correct: false, msg: "Delicious, but false!" }
+            { text: "The Giant Pacific Octopus", correct: false, msg: "Octopuses have 9 brains and 3 hearts, not 32 brains!" },
+            { text: "The Medicinal Leech (Hirudo medicinalis)", correct: true, msg: "100% Biological Fact! A leech has 32 distinct body segments, each containing its own neuronal brain ganglion!" },
+            { text: "The Portuguese Man o' War", correct: false, msg: "That is a colonial siphonophore with no central brain." },
+            { text: "The Antarctic Colossal Squid", correct: false, msg: "Squid eyes are basketball sized, but only 1 pair!" }
         ]
     },
 
-    // LEVEL 4: Bomb Timer / Self Control Trap
+    // ----------------------------------------------------
+    // LEVEL 4: Bomb Timer / Periodic Table Anomaly
+    // ----------------------------------------------------
     {
         id: 4,
         title: "Question 4",
-        question: "DO NOT CLICK THE RED BUTTON!",
-        type: "interactive",
-        timer: 7,
-        hint: "Resist the urge...",
-        html: `
-            <div class="interactive-stage text-center">
-                <button id="red-trap" class="big-red-btn pulse-anim">🔴 DO NOT CLICK ME 🔴</button>
-                <div style="margin-top: 15px; font-size: 14px; color: #ffeb3b; font-weight: bold;">⏳ Defusal through patience...</div>
-            </div>
-        `,
-        setup: (container, game) => {
-            const btn = container.querySelector('#red-trap');
-            btn.onclick = () => game.loseLife("You were told NOT to click it!");
-            game.customTimerCallback = () => {
-                game.solveLevel("You resisted temptation! Master of discipline!");
-            };
-        }
+        question: "BOMB DEFUSAL! Which single letter of the English alphabet does NOT appear anywhere on the standard Periodic Table of Elements?",
+        type: "choice",
+        timer: 10,
+        hint: "Only one letter has zero chemical element symbols or names...",
+        options: [
+            { text: "Letter 'J'", correct: true, msg: "Chemistry Master! 'J' is the ONLY letter absent from all chemical element symbols and names!" },
+            { text: "Letter 'Q'", correct: false, msg: "Q appeared in systematic IUPAC element names like Ununquadium!" },
+            { text: "Letter 'X'", correct: false, msg: "Xenon (Xe) is element 54!" },
+            { text: "Letter 'Z'", correct: false, msg: "Zinc (Zn) and Zirconium (Zr) exist!" }
+        ]
     },
 
-    // LEVEL 5: Drag and Drop Wordplay
+    // ----------------------------------------------------
+    // LEVEL 5: Crazy Postal Geography
+    // ----------------------------------------------------
     {
         id: 5,
         title: "Question 5",
-        question: "Put the <span id='drag-cat' style='color:#00e5ff; text-decoration: underline; cursor: grab;'>cat</span> in the <span id='drop-hat' style='color:#ffd700; border: 2px dashed #ffd700; padding: 2px 6px; border-radius: 6px; cursor: pointer;'>party hat</span>.",
-        type: "interactive",
-        hint: "Click 'cat' then click 'party hat'!",
-        html: `
-            <div class="interactive-stage text-center">
-                <div style="display: flex; justify-content: space-around; align-items: center; margin: 20px 0;">
-                    <div id="img-cat" style="font-size: 65px; cursor: pointer;">🐱</div>
-                    <div id="img-hat" style="font-size: 65px;">🥳</div>
-                </div>
-                <div style="font-size: 13px; opacity: 0.8;">(Click word 'cat', then click 'party hat'!)</div>
-            </div>
-        `,
-        setup: (container, game) => {
-            const imgCat = container.querySelector('#img-cat');
-            imgCat.onclick = () => game.loseLife("The cat hissed! Click the actual word 'cat' above!");
-            const wordCat = document.querySelector('#drag-cat');
-            const wordHat = document.querySelector('#drop-hat');
-            let selected = false;
-            if (wordCat && wordHat) {
-                wordCat.onclick = () => {
-                    selected = true;
-                    wordCat.style.background = "#ff4081";
-                    wordCat.style.color = "#fff";
-                    window.sound.playClick();
-                };
-                wordHat.onclick = () => {
-                    if (selected) {
-                        game.solveLevel("Purr-fect! You put the word 'cat' in the 'party hat'!");
-                    } else {
-                        game.loseLife("Click the word 'cat' first!");
-                    }
-                };
-            }
-        }
+        question: "In which country did the national postal service famously deliver an envelope with no written address or name—only a hand-drawn map with 'a red roof'?",
+        type: "choice",
+        hint: "A volcanic island nation in the North Atlantic...",
+        options: [
+            { text: "Iceland", correct: true, msg: "True Story! In Hvammsveit, Iceland, a tourist mailed a letter with a hand-sketched map and the post office delivered it successfully!" },
+            { text: "New Zealand", correct: false, msg: "Kiwi post is friendly, but Iceland holds this famous map delivery record!" },
+            { text: "Greenland", correct: false, msg: "Nope!" },
+            { text: "Liechtenstein", correct: false, msg: "Small country, but strict street numbering!" }
+        ]
     },
 
-    // LEVEL 6: Bizarre Absurdist Math
+    // ----------------------------------------------------
+    // LEVEL 6: Bizarre Mammal Secretions
+    // ----------------------------------------------------
     {
         id: 6,
         title: "Question 6",
-        question: "What is the mathematical square root of an onion?",
+        question: "What distinct color is the milk produced by a female hippopotamus (Hippopotamus amphibius)?",
         type: "choice",
-        hint: "Botanical algebra...",
+        hint: "Two unique acids mix with white secretions...",
         options: [
-            { text: "2.71828", correct: false, msg: "That is Euler's constant!" },
-            { text: "Shallots", correct: true, msg: "Splapp-me-do logic: √Onion = Shallots!" },
-            { text: "Tears", correct: false, msg: "Tears are the emotional remainder." },
-            { text: "Garlic Clove", correct: false, msg: "Wrong botanical family!" }
+            { text: "Neon Green", correct: false, msg: "Nope! That would look radioactive!" },
+            { text: "Bright Strawberry Pink", correct: true, msg: "Bio Fact! Hippos secrete 'hipposudoric acid' (red) and 'norhipposudoric acid' (orange) which mix with white milk into vibrant pink!" },
+            { text: "Jet Black", correct: false, msg: "No mammal produces black milk." },
+            { text: "Pale Blue", correct: false, msg: "Nope!" }
         ]
     },
 
-    // LEVEL 7: Cursor Maze Navigation
+    // ----------------------------------------------------
+    // LEVEL 7: Ancient Tactical Warfare
+    // ----------------------------------------------------
     {
         id: 7,
         title: "Question 7",
-        question: "Guide your cursor along the track to the Cake without touching the red zone!",
-        type: "interactive",
-        hint: "Stay in the gray path, or click the cake directly!",
-        html: `
-            <div id="maze-track-box" style="position: relative; width: 100%; height: 180px; background: #050505; border-radius: 12px; overflow: hidden;">
-                <div id="maze-top-zone" style="position: absolute; top: 0; left: 0; width: 100%; height: 65px; background: #d32f2f; opacity: 0.85;"></div>
-                <div id="maze-bot-zone" style="position: absolute; bottom: 0; left: 0; width: 100%; height: 65px; background: #d32f2f; opacity: 0.85;"></div>
-                <div id="maze-lane" style="position: absolute; top: 65px; left: 0; width: 100%; height: 50px; background: #333; display: flex; align-items: center; justify-content: space-between; padding: 0 15px;">
-                    <div id="mz-start" style="background:#4caf50; color:#fff; font-size:12px; font-weight:900; padding:6px 12px; border-radius:20px; cursor:pointer;">START HERE</div>
-                    <div id="mz-cake" style="font-size:35px; cursor:pointer;">🎂</div>
-                </div>
-            </div>
-        `,
-        setup: (container, game) => {
-            let active = false;
-            const start = container.querySelector('#mz-start');
-            const cake = container.querySelector('#mz-cake');
-            const topZ = container.querySelector('#maze-top-zone');
-            const botZ = container.querySelector('#maze-bot-zone');
-            start.onmouseenter = () => { active = true; start.style.boxShadow = "0 0 12px #76ff03"; };
-            const triggerWall = () => { if (active) { active = false; game.loseLife("You touched the red zone!"); } };
-            topZ.onmouseenter = triggerWall;
-            botZ.onmouseenter = triggerWall;
-            cake.onmouseenter = () => { if (active) game.solveLevel("Smooth navigation! Cake secured!"); };
-            cake.onclick = () => game.solveLevel("Direct click shortcut! Valid quiz tactic!");
-        }
+        question: "In 525 BC at the Battle of Pelusium, how did the Persian King Cambyses II defeat the Egyptian defensive forces without suffering heavy casualties?",
+        type: "choice",
+        hint: "Religious taboo exploitation...",
+        options: [
+            { text: "His front-line soldiers held live cats as shields", correct: true, msg: "Legendary Tactics! Egyptians revered Bastet; hurting a cat carried the death penalty, so they surrendered rather than strike!" },
+            { text: "He poisoned the Nile with fermented pomegranate juice", correct: false, msg: "Nope, water poisoning was not used here." },
+            { text: "He projected giant shadow silhouettes using mirrors", correct: false, msg: "Too high tech for 525 BC!" },
+            { text: "He traded 1,000 golden chariots for surrender", correct: false, msg: "Nope, it was the sacred feline frontline!" }
+        ]
     },
 
-    // LEVEL 8: Bizarre Incredibly Difficult Biology
+    // ----------------------------------------------------
+    // LEVEL 8: Obscure Etymological Origins
+    // ----------------------------------------------------
     {
         id: 8,
         title: "Question 8",
-        question: "Which organism can naturally survive having over 65% of its total body water frozen into solid ice during winter?",
+        question: "What was the original Middle English meaning of the word 'CLUE' (originally spelled 'cleow')?",
         type: "choice",
-        hint: "Stops heart and thaws in spring...",
+        hint: "Think of Theseus escaping the Minotaur's labyrinth...",
         options: [
-            { text: "Rana sylvatica (Alaskan Wood Frog)", correct: true, msg: "100% biological fact! Wood frogs freeze solid and revive in spring!" },
-            { text: "Emperor Penguin Chick", correct: false, msg: "Nope, they huddle for warmth." },
-            { text: "Siberian Wolverine", correct: false, msg: "Mammals cannot survive freezing solid!" },
-            { text: "Greenland Halibut", correct: false, msg: "Antifreeze proteins protect fish, but they do not freeze solid." }
+            { text: "A ball of wound yarn or thread", correct: true, msg: "Linguistic Genius! A 'cleow' was a ball of thread used to guide someone out of a maze. Finding a clue meant following the thread!" },
+            { text: "A footprint in damp clay", correct: false, msg: "Nope!" },
+            { text: "A whispered rumor in royal court", correct: false, msg: "Nope!" },
+            { text: "A notched wooden signpost", correct: false, msg: "Nope!" }
         ]
     },
 
-    // LEVEL 9: Reflex Escaping Balloon
+    // ----------------------------------------------------
+    // LEVEL 9: Deep Marine Hydrostatic Physics
+    // ----------------------------------------------------
     {
         id: 9,
         title: "Question 9",
-        question: "Catch the runaway birthday balloon before it escapes into orbit!",
-        type: "interactive",
-        hint: "Corner it against the walls!",
-        html: `
-            <div id="balloon-box" style="position: relative; width: 100%; height: 190px; background: rgba(0,0,0,0.25); border-radius: 12px; overflow: hidden;">
-                <div id="fast-balloon" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 48px; cursor: pointer; transition: all 0.12s ease-out; user-select: none;">🎈</div>
-            </div>
-        `,
-        setup: (container, game) => {
-            const b = container.querySelector('#fast-balloon');
-            const box = container.querySelector('#balloon-box');
-            let escapes = 0;
-            const dodge = () => {
-                if (escapes >= 4) { b.style.filter = "drop-shadow(0 0 12px gold)"; return; }
-                escapes++;
-                window.sound.playBoing();
-                const maxX = box.clientWidth - 70;
-                const maxY = box.clientHeight - 70;
-                b.style.left = Math.max(10, Math.floor(Math.random() * maxX)) + "px";
-                b.style.top = Math.max(10, Math.floor(Math.random() * maxY)) + "px";
-                b.style.transform = "none";
-            };
-            b.onmouseenter = dodge;
-            b.onclick = () => game.solveLevel("POP! Runaway balloon captured!");
-        }
+        question: "If you crack open a raw chicken egg underwater at a depth of 60 feet (approx 2.8 atmospheres of pressure), what happens?",
+        type: "choice",
+        hint: "Equal hydrostatic pressure in all directions...",
+        options: [
+            { text: "The yolk instantly dissolves into yellow mist", correct: false, msg: "Nope! Surface tension and hydrostatic pressure prevent dissolution!" },
+            { text: "It stays perfectly intact as a floating, bouncy yolk sphere", correct: true, msg: "Physics Verified! The surrounding water pressure acts like an invisible shell, keeping the albumen and yolk unified!" },
+            { text: "It implodes into microscopic particles", correct: false, msg: "Water pressure is non-destructive to liquids of equal density!" },
+            { text: "It instantly cooks solid from seawater salinity", correct: false, msg: "Salinity is far too low to denature egg protein instantly!" }
+        ]
     },
 
-    // LEVEL 10: Keyboard Input Challenge
+    // ----------------------------------------------------
+    // LEVEL 10: Bomb Timer / Botanical Deception
+    // ----------------------------------------------------
     {
         id: 10,
         title: "Question 10",
-        question: "Quick! Spell 'BIRTHDAY' backwards on your keyboard!",
-        type: "interactive",
-        timer: 14,
-        hint: "Type: Y-A-D-H-T-R-I-B",
-        html: `
-            <div class="interactive-stage text-center">
-                <div id="typed-zone" style="font-family: var(--font-pixel); font-size: 26px; letter-spacing: 4px; color: #00e5ff; min-height: 44px; margin: 15px auto; border-bottom: 3px solid #00e5ff; width: 85%;">_ _ _ _ _ _ _ _</div>
-                <div style="font-size: 13px; opacity: 0.8; margin-bottom: 10px;">Type on keyboard or tap virtual keys:</div>
-                <div id="vk-keys" style="display: flex; gap: 6px; justify-content: center; flex-wrap: wrap;">
-                    <button class="quiz-btn vk-k">Y</button><button class="quiz-btn vk-k">A</button><button class="quiz-btn vk-k">D</button><button class="quiz-btn vk-k">H</button><button class="quiz-btn vk-k">T</button><button class="quiz-btn vk-k">R</button><button class="quiz-btn vk-k">I</button><button class="quiz-btn vk-k">B</button>
-                </div>
-            </div>
-        `,
-        setup: (container, game) => {
-            const target = "YADHTRIB";
-            let typed = "";
-            const display = container.querySelector('#typed-zone');
-            const refresh = () => {
-                display.innerText = typed.padEnd(8, '_').split('').join(' ');
-                if (typed === target) {
-                    window.removeEventListener('keydown', onKey);
-                    game.solveLevel("YADHTRIB! Birthday reversed!");
-                } else if (typed.length >= 8) {
-                    window.sound.playWrong();
-                    typed = "";
-                    display.innerText = "_ _ _ _ _ _ _ _";
-                }
-            };
-            const onKey = (e) => {
-                const k = e.key.toUpperCase();
-                if (/^[A-Z]$/.test(k)) { typed += k; window.sound.playClick(); refresh(); }
-                else if (e.key === 'Backspace') { typed = typed.slice(0, -1); refresh(); }
-            };
-            window.addEventListener('keydown', onKey);
-            game.cleanupListeners.push(() => window.removeEventListener('keydown', onKey));
-            container.querySelectorAll('.vk-k').forEach(b => {
-                b.onclick = () => { typed += b.innerText; window.sound.playClick(); refresh(); };
-            });
-        }
-    }
-);
+        question: "BOMB DEFUSAL! Botanically speaking, which of the following is NOT a true berry?",
+        type: "choice",
+        timer: 9,
+        hint: "Botanical berries derive from a single ovary of an individual flower...",
+        options: [
+            { text: "Banana", correct: false, msg: "Bananas ARE botanically berries (endocarp, mesocarp, exocarp)!" },
+            { text: "Watermelon", correct: false, msg: "Watermelons ARE modified berries called pepos!" },
+            { text: "Strawberry", correct: true, msg: "Botanical Trap Defused! Strawberries are aggregate accessory fruits; the tiny yellow specks on the outside (achenes) are the true fruits!" },
+            { text: "Avocado", correct: false, msg: "Avocados ARE single-seeded berries!" }
+        ]
+    },
 
-
-window.LEVELS.push(
-    // LEVEL 11: Dark Flashlight Exploration
+    // ----------------------------------------------------
+    // LEVEL 11: Extreme Insect Anatomy
+    // ----------------------------------------------------
     {
         id: 11,
         title: "Question 11",
-        question: "Blackout! Find and light the secret birthday match in the dark room!",
-        type: "interactive",
-        hint: "Hover around with your mouse to illuminate...",
-        html: `
-            <div id="flash-room" style="position: relative; width: 100%; height: 200px; background: #050505; border-radius: 12px; cursor: crosshair; overflow: hidden;">
-                <div id="spotlight" style="position: absolute; width: 140px; height: 140px; border-radius: 50%; pointer-events: none; background: radial-gradient(circle, rgba(255,255,220,0.7) 0%, rgba(255,255,220,0) 70%); transform: translate(-50%, -50%); display: none;"></div>
-                <div id="secret-match" style="position: absolute; left: 78%; top: 30%; font-size: 32px; cursor: pointer; opacity: 0.05; transition: opacity 0.2s;">🔥</div>
-            </div>
-        `,
-        setup: (container, game) => {
-            const room = container.querySelector('#flash-room');
-            const spot = container.querySelector('#spotlight');
-            const match = container.querySelector('#secret-match');
-            room.onmouseenter = () => spot.style.display = 'block';
-            room.onmouseleave = () => spot.style.display = 'none';
-            room.onmousemove = (e) => {
-                const rect = room.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                spot.style.left = x + 'px';
-                spot.style.top = y + 'px';
-                const mRect = match.getBoundingClientRect();
-                const mx = mRect.left - rect.left + 16;
-                const my = mRect.top - rect.top + 16;
-                const d = Math.hypot(x - mx, y - my);
-                match.style.opacity = d < 70 ? '1' : '0.05';
-            };
-            match.onclick = () => game.solveLevel("Flame ignited! The party is saved!");
-        }
+        question: "How long can a decapitated cockroach survive alive, and what is the actual cause of its eventual death?",
+        type: "choice",
+        hint: "They breathe through spiracles in their abdomen...",
+        options: [
+            { text: "30 seconds (blood loss)", correct: false, msg: "Cockroaches have an open circulatory system with minimal blood pressure; their necks seal by clotting instantly!" },
+            { text: "Several weeks (dies of dehydration / starvation)", correct: true, msg: "Horrifying Bio Fact! Cockroaches breathe through body spiracles and have local ganglia. Without a mouth, they eventually dehydrate!" },
+            { text: "48 hours (lack of oxygen)", correct: false, msg: "They don't breathe through their mouths/heads at all!" },
+            { text: "1 year (in a state of cryptobiosis)", correct: false, msg: "Too long, dehydration claims them in weeks." }
+        ]
     },
 
-    // LEVEL 12: Bizarre Obscure Astronomy Trivia
+    // ----------------------------------------------------
+    // LEVEL 12: Obscure Early Aviation History
+    // ----------------------------------------------------
     {
         id: 12,
         title: "Question 12",
-        question: "On the gas giant Saturn and its neighbor Jupiter, atmospheric pressure and methane combine to cause what bizarre precipitation phenomenon?",
+        question: "On September 19, 1783, who were the passenger test subjects aboard the Montgolfier brothers' first hot air balloon flight before King Louis XVI?",
         type: "choice",
-        hint: "Extremely luxurious weather...",
+        hint: "Barnyard pioneers of flight...",
         options: [
-            { text: "Liquid Nitrogen Hail", correct: false, msg: "Too cold for nitrogen!" },
-            { text: "Hailstorms of Solid Diamonds", correct: true, msg: "Astrophysics verified! Atmospheric methane is crushed into ~10 million tons of falling diamonds each year!" },
-            { text: "Sulfuric Acid Tornadoes", correct: false, msg: "That is Venus, not Jupiter/Saturn." },
-            { text: "Frozen Ethanol Snow", correct: false, msg: "Nope!" }
+            { text: "A Sheep, a Duck, and a Rooster", correct: true, msg: "History Verified! The sheep tested mammalian high-altitude breathing, the duck tested avian effects, and the rooster tested ground birds!" },
+            { text: "Two Convicted French Prisoners", correct: false, msg: "King Louis XVI proposed prisoners, but the scientists refused and chose animals!" },
+            { text: "A Chimpanzee named Pierre", correct: false, msg: "Monkeys flew in 20th century rockets, not 1783 balloons." },
+            { text: "Three Royal Poodles", correct: false, msg: "Nope!" }
         ]
     },
 
-    // LEVEL 13: Bomb Falling Cake Catcher
+    // ----------------------------------------------------
+    // LEVEL 13: Bomb Timer / Hyper-Dense Nuclear Physics
+    // ----------------------------------------------------
     {
         id: 13,
         title: "Question 13",
-        question: "CATCH THE FALLING CAKE BEFORE IT HITS THE FLOOR!",
-        type: "interactive",
-        timer: 7,
-        hint: "Move the plate directly under the falling cake!",
-        html: `
-            <div id="drop-arena" style="position: relative; width: 100%; height: 210px; background: rgba(0,0,0,0.3); border-radius: 12px; overflow: hidden;">
-                <div id="drop-cake" style="position: absolute; left: 50%; top: 10px; font-size: 42px; transform: translateX(-50%);">🎂</div>
-                <div id="move-plate" style="position: absolute; left: 50%; bottom: 10px; width: 95px; height: 26px; background: #00e5ff; border: 3px solid #fff; border-radius: 14px; transform: translateX(-50%); cursor: grab; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 900; color: #000;">PLATE</div>
-            </div>
-        `,
-        setup: (container, game) => {
-            const arena = container.querySelector('#drop-arena');
-            const cake = container.querySelector('#drop-cake');
-            const plate = container.querySelector('#move-plate');
-            const startX = Math.floor(Math.random() * (arena.clientWidth - 90)) + 45;
-            cake.style.left = startX + "px";
-            let cy = 10;
-            let caught = false;
-            const dropTimer = setInterval(() => {
-                if (caught) { clearInterval(dropTimer); return; }
-                cy += 2.0;
-                cake.style.top = cy + "px";
-                const cRect = cake.getBoundingClientRect();
-                const pRect = plate.getBoundingClientRect();
-                if (cRect.bottom >= pRect.top && cRect.top <= pRect.bottom && cRect.right >= pRect.left && cRect.left <= pRect.right) {
-                    caught = true;
-                    clearInterval(dropTimer);
-                    window.sound.playCorrect();
-                    game.solveLevel("PERFECT CATCH! Cake safely plated!");
-                    return;
-                }
-                if (cy > arena.clientHeight - 45) {
-                    clearInterval(dropTimer);
-                    window.sound.playExplosion();
-                    game.loseLife("SPLAT! Cake dropped on the floor!");
-                }
-            }, 20);
-            game.cleanupListeners.push(() => clearInterval(dropTimer));
-            arena.onmousemove = (e) => {
-                const rect = arena.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                plate.style.left = Math.max(50, Math.min(arena.clientWidth - 50, x)) + 'px';
-            };
-        }
+        question: "BOMB DEFUSAL! If you removed all the empty atomic space from every single human being alive on Earth (all 8 billion people), what volume would humanity occupy?",
+        type: "choice",
+        timer: 10,
+        hint: "Atoms are 99.9999999% empty space...",
+        options: [
+            { text: "A single Sugar Cube (~1 cubic centimeter)", correct: true, msg: "Mind-Blowing Physics! Nuclei are tiny compared to electron clouds. Pure nuclear matter of 8 billion humans fits inside a sugar cube!" },
+            { text: "The Empire State Building", correct: false, msg: "Way too big! Nuclei are unimaginably dense!" },
+            { text: "An Olympic Swimming Pool", correct: false, msg: "Still vastly too large!" },
+            { text: "A standard Basketball", correct: false, msg: "Nope, down to a single sugar cube!" }
+        ]
     },
 
-    // LEVEL 14: Smallest Dot Punctuation Trick
+    // ----------------------------------------------------
+    // LEVEL 14: The Great Military Blunder
+    // ----------------------------------------------------
     {
         id: 14,
         title: "Question 14",
-        question: "Click the smallest dot on this screen.",
-        type: "interactive",
-        hint: "Check the period at the end of the sentence!",
-        html: `
-            <div class="interactive-stage text-center">
-                <div style="display: flex; justify-content: space-around; align-items: center; margin: 25px 0;">
-                    <div class="f-dot" style="width: 36px; height: 36px; background: #e91e63; border-radius: 50%; cursor: pointer;"></div>
-                    <div class="f-dot" style="width: 22px; height: 22px; background: #00bcd4; border-radius: 50%; cursor: pointer;"></div>
-                    <div class="f-dot" style="width: 12px; height: 12px; background: #4caf50; border-radius: 50%; cursor: pointer;"></div>
-                </div>
-                <div id="target-period" style="display: inline-block; font-size: 28px; color: #ffd700; cursor: pointer; font-weight: 900; padding: 4px 10px;" title="Click me!">.</div>
-            </div>
-        `,
-        setup: (container, game) => {
-            container.querySelectorAll('.f-dot').forEach(d => {
-                d.onclick = () => game.loseLife("Too big! Not the smallest dot!");
-            });
-            container.querySelector('#target-period').onclick = () => {
-                game.solveLevel("Sharp eyes! The period was the smallest dot!");
-            };
-        }
+        question: "In November 1932, the Australian military deployed heavy Lewis machine guns and 10,000 rounds of ammunition in an official war against which adversary—and LOST?",
+        type: "choice",
+        hint: "Fast-running flightless birds in Western Australia...",
+        options: [
+            { text: "20,000 Wild Emus", correct: true, msg: "True Australian History! The Great Emu War! Emus scattered in guerrilla warfare squads and absorbed bullets like tanks, forcing the army to withdraw!" },
+            { text: "Feral Dingo Packs", correct: false, msg: "Dingo fences were built, but no military Lewis machine gun war was declared." },
+            { text: "Invasive Cane Toads", correct: false, msg: "Toads are toxic, but not fought with machine guns." },
+            { text: "Wild Red Kangaroos", correct: false, msg: "Nope, it was the Emus!" }
+        ]
     },
 
-    // LEVEL 15: Feed the Birthday Boy
+    // ----------------------------------------------------
+    // LEVEL 15: Extreme Cellular Biology
+    // ----------------------------------------------------
     {
         id: 15,
         title: "Question 15",
-        question: "Feed T until he's completely satisfied!",
-        type: "interactive",
-        hint: "Feed all the snacks then click the mouth!",
-        html: `
-            <div class="interactive-stage text-center">
-                <div id="feed-mouth" style="font-size: 80px; margin: 10px 0; user-select: none; transition: transform 0.2s;">😮</div>
-                <div id="snacks" style="display: flex; gap: 18px; justify-content: center; font-size: 40px;">
-                    <span class="snack-item" style="cursor: pointer;">🍕</span>
-                    <span class="snack-item" style="cursor: pointer;">🍔</span>
-                    <span class="snack-item" style="cursor: pointer;">🌮</span>
-                </div>
-                <div id="snack-meter" style="margin-top: 15px; font-weight: bold; color: #ff9100;">Fullness: 0%</div>
-            </div>
-        `,
-        setup: (container, game) => {
-            const mouth = container.querySelector('#feed-mouth');
-            const items = container.querySelectorAll('.snack-item');
-            const meter = container.querySelector('#snack-meter');
-            let fed = 0;
-            items.forEach(item => {
-                item.onclick = () => {
-                    if (item.style.display !== 'none') {
-                        item.style.display = 'none';
-                        fed++;
-                        window.sound.playBoing();
-                        mouth.style.transform = "scale(1.2)";
-                        setTimeout(() => mouth.style.transform = "scale(1)", 200);
-                        if (fed === 3) {
-                            mouth.innerText = "😋";
-                            meter.innerText = "Fullness: 100%! Tap T's mouth to finish!";
-                            meter.style.color = "#76ff03";
-                            mouth.style.cursor = 'pointer';
-                            mouth.onclick = () => {
-                                mouth.innerText = "😎";
-                                game.solveLevel("Delicious! T is fully energized!");
-                            };
-                        } else {
-                            meter.innerText = `Fullness: ${fed * 33}%`;
-                        }
-                    }
-                };
-            });
-        }
+        question: "The 'Immortal Jellyfish' (Turritopsis dohrnii) is the only known animal capable of reverting back to its juvenile polyp state when damaged. What is this cellular process called?",
+        type: "choice",
+        hint: "Adult specialized cells transform into completely different cell types...",
+        options: [
+            { text: "Transdifferentiation", correct: true, msg: "Cell Biology Genius! Transdifferentiation allows differentiated adult somatic cells to re-specialize into new tissue lines perpetually!" },
+            { text: "Telomeric Super-Extension", correct: false, msg: "Telomeres protect DNA ends, but the cell reversal process is transdifferentiation." },
+            { text: "Apoptotic Reversal", correct: false, msg: "Apoptosis is programmed cell death, not rejuvenation." },
+            { text: "Bioluminescent Mitosis", correct: false, msg: "Mitosis is standard cell division." }
+        ]
     },
 
-    // LEVEL 16: Primary Color Mixing
+    // ----------------------------------------------------
+    // LEVEL 16: Bomb Timer / The Lowest Sound in the Universe
+    // ----------------------------------------------------
     {
         id: 16,
         title: "Question 16",
-        question: "Press the GREEN button to continue.",
-        type: "interactive",
-        hint: "Click Blue, then click Yellow to synthesize Green!",
-        html: `
-            <div class="interactive-stage text-center">
-                <div style="display: flex; justify-content: center; gap: 18px; margin: 25px 0;">
-                    <button id="p-blue" class="quiz-btn" style="background: #2196f3; color: white;">BLUE</button>
-                    <button id="p-yellow" class="quiz-btn" style="background: #ffeb3b; color: #000;">YELLOW</button>
-                    <button id="p-red" class="quiz-btn" style="background: #f44336; color: white;">RED</button>
-                </div>
-            </div>
-        `,
-        setup: (container, game) => {
-            const blue = container.querySelector('#p-blue');
-            const yellow = container.querySelector('#p-yellow');
-            const red = container.querySelector('#p-red');
-            red.onclick = () => game.loseLife("Red is definitely not Green!");
-            let blueArmed = false;
-            blue.onclick = () => {
-                blueArmed = true;
-                blue.style.border = "4px solid #fff";
-                window.sound.playClick();
-                game.showToast("Blue primed! Now mix with Yellow!", "normal");
-            };
-            yellow.onclick = () => {
-                if (blueArmed) {
-                    yellow.style.background = "#4caf50";
-                    yellow.style.color = "#fff";
-                    yellow.innerText = "GREEN (SYNTHESIZED!)";
-                    window.sound.playCorrect();
-                    setTimeout(() => {
-                        game.solveLevel("Color theory mastered! Blue + Yellow = Green!");
-                    }, 400);
-                } else {
-                    game.loseLife("That is Yellow! Mix Blue with it first!");
-                }
-            };
-        }
+        question: "BOMB DEFUSAL! What is the lowest musical acoustic note ever recorded in the universe, emitted by a supermassive black hole in the Perseus cluster?",
+        type: "choice",
+        timer: 10,
+        hint: "Oscillates once every 9.6 million years...",
+        options: [
+            { text: "A B-flat, 57 octaves below Middle C", correct: true, msg: "Acoustic Astrophysics! NASA detected sound waves in hot gas around the Perseus black hole pitched 57 octaves below middle C!" },
+            { text: "An F-sharp, 12 octaves below human hearing", correct: false, msg: "Way too high pitched!" },
+            { text: "A C-minor chord, 80 octaves below Middle C", correct: false, msg: "It was a single B-flat pitch, not a minor chord!" },
+            { text: "An A-flat vibrating once per second (1 Hz)", correct: false, msg: "1 Hz is audible to elephants; the black hole note is 57 octaves lower!" }
+        ]
     },
 
-    // LEVEL 17: Bizarre Obscure History Trivia
+    // ----------------------------------------------------
+    // LEVEL 17: Maritime Ghost Ship Mysteries
+    // ----------------------------------------------------
     {
         id: 17,
         title: "Question 17",
-        question: "When Nintendo was founded in September 1889 in Kyoto, what was their core commercial product?",
+        question: "In December 1872, the merchant ship Mary Celeste was found floating completely undamaged in the Atlantic with all crew vanished. What untouched cargo was found in its hold?",
         type: "choice",
-        hint: "Long before video games...",
+        hint: "1,701 barrels of a hazardous flammable liquid...",
         options: [
-            { text: "Handcrafted Hanafuda Playing Cards", correct: true, msg: "True! Fusajiro Yamauchi started by selling handmade flower cards!" },
-            { text: "Mechanical Clockwork Music Boxes", correct: false, msg: "Nope!" },
-            { text: "Silk Kimonos & Parasols", correct: false, msg: "Nope!" },
-            { text: "Steam Locomotive Whistles", correct: false, msg: "Nope!" }
+            { text: "1,701 Barrels of Industrial Denatured Alcohol", correct: true, msg: "Historical Enigma! The 1,701 alcohol barrels were untouched and 6 months of food remained, leaving the evacuation an enduring mystery!" },
+            { text: "500 Chests of Spanish Silver Dubloons", correct: false, msg: "No treasure was on board; pirates were ruled out because cargo was untouched." },
+            { text: "20 Tons of Fine Silk & Spices", correct: false, msg: "Nope!" },
+            { text: "1,000 Boxes of Unopened Royal Mail", correct: false, msg: "Nope!" }
         ]
     },
 
-    // LEVEL 18: Birthday Riddle
+    // ----------------------------------------------------
+    // LEVEL 18: DNA Data Storage Density
+    // ----------------------------------------------------
     {
         id: 18,
         title: "Question 18",
-        question: "What goes up every single year on this exact date, but can NEVER come back down?",
+        question: "According to molecular biology and biocomputing researchers, how much digital data can theoretically be stored inside a single gram of human DNA?",
         type: "choice",
-        hint: "A birthday milestone...",
+        hint: "Adenine, Cytosine, Guanine, and Thymine act as 2-bit density storage...",
         options: [
-            { text: "Rent & Taxes", correct: false, msg: "True in life, but not the riddle!" },
-            { text: "Your Age", correct: true, msg: "Bingo! Happy Birthday, another level higher!" },
-            { text: "A Helium Balloon", correct: false, msg: "Balloons eventually pop and fall down!" },
-            { text: "Blood Pressure", correct: false, msg: "Hopefully that goes down!" }
+            { text: "215 Petabytes (approx 215 Million Gigabytes)", correct: true, msg: "Bio-Storage Genius! 1 gram of DNA can theoretically store ~215 PB of data, meaning all world data could fit in a shoebox!" },
+            { text: "1 Terabyte", correct: false, msg: "Way too small! Modern microSD cards hold 1 TB!" },
+            { text: "500 Gigabytes", correct: false, msg: "A single flash drive holds that!" },
+            { text: "10 Exabytes (more than all internet traffic)", correct: false, msg: "1 gram is ~215 Petabytes, not 10 Exabytes." }
         ]
     },
 
-    // LEVEL 19: Bomb Rapid Sequential Tape Strips
+    // ----------------------------------------------------
+    // LEVEL 19: Bizarre Imperial Russian Taxation
+    // ----------------------------------------------------
     {
         id: 19,
         title: "Question 19",
-        question: "UNWRAP THE BIRTHDAY PRESENT! (Click tapes in order: 1 → 2 → 3 → 4)",
-        type: "interactive",
-        timer: 7,
-        hint: "Click 1, 2, 3, 4 before the bomb explodes!",
-        html: `
-            <div class="interactive-stage text-center">
-                <div style="position: relative; width: 190px; height: 160px; margin: 10px auto; background: #e91e63; border-radius: 10px; border: 4px solid #fff;">
-                    <div id="tp-1" style="position: absolute; top: 12px; left: 15px; width: 155px; height: 26px; background: #ffd54f; color: #000; font-weight: 900; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 4px;">TAPE 1</div>
-                    <div id="tp-2" style="position: absolute; top: 46px; left: 15px; width: 155px; height: 26px; background: #ffd54f; color: #000; font-weight: 900; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 4px;">TAPE 2</div>
-                    <div id="tp-3" style="position: absolute; top: 80px; left: 15px; width: 155px; height: 26px; background: #ffd54f; color: #000; font-weight: 900; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 4px;">TAPE 3</div>
-                    <div id="tp-4" style="position: absolute; top: 114px; left: 15px; width: 155px; height: 26px; background: #ffd54f; color: #000; font-weight: 900; cursor: pointer; display: flex; align-items: center; justify-content: center; border-radius: 4px;">TAPE 4</div>
-                </div>
-            </div>
-        `,
-        setup: (container, game) => {
-            let step = 1;
-            for (let i = 1; i <= 4; i++) {
-                const tape = container.querySelector('#tp-' + i);
-                tape.onclick = () => {
-                    if (i === step) {
-                        tape.style.visibility = 'hidden';
-                        window.sound.playBoing();
-                        step++;
-                        if (step === 5) {
-                            game.solveLevel("Present unwrapped with ninja speed!");
-                        }
-                    } else {
-                        game.loseLife(`Wrong order! You were supposed to click Tape ${step}!`);
-                    }
-                };
-            }
-        }
+        question: "In 1698, Tsar Peter the Great of Russia enacted a mandatory tax on what personal feature in an aggressive campaign to westernize the Russian Empire?",
+        type: "choice",
+        hint: "Taxpayers had to carry a stamped copper/silver token as proof...",
+        options: [
+            { text: "Facial Beards and Mustaches", correct: true, msg: "History Verified! Peter the Great taxed beards. Men who paid received a bronze 'Beard Token' inscribed: 'The beard is a useless burden'!" },
+            { text: "Tall Woolen Hats", correct: false, msg: "Nope!" },
+            { text: "Wooden Horseback Saddles", correct: false, msg: "Nope!" },
+            { text: "Owning More than Two Fur Coats", correct: false, msg: "Nope, it was facial hair!" }
+        ]
     },
 
-    // LEVEL 20: Invisible Pull-Chain Switch
+    // ----------------------------------------------------
+    // LEVEL 20: Bomb Timer / Explosive Entomology
+    // ----------------------------------------------------
     {
         id: 20,
         title: "Question 20",
-        question: "Who turned off the lights?! Find the hanging light chain!",
-        type: "interactive",
-        hint: "Search the top center of the dark box...",
-        html: `
-            <div id="v-dark" style="position: relative; width: 100%; height: 180px; background: #000; border-radius: 10px; overflow: hidden;">
-                <div id="pull-chain" style="position: absolute; top: 0; left: 50%; width: 24px; height: 75px; cursor: pointer; display: flex; flex-direction: column; align-items: center; opacity: 0.15; transition: opacity 0.2s;">
-                    <div style="width: 3px; height: 50px; background: #aaa;"></div>
-                    <div style="width: 16px; height: 16px; background: #ffd700; border-radius: 50%;"></div>
-                </div>
-            </div>
-        `,
-        setup: (container, game) => {
-            const chain = container.querySelector('#pull-chain');
-            const box = container.querySelector('#v-dark');
-            chain.onmouseenter = () => chain.style.opacity = '1';
-            chain.onmouseleave = () => chain.style.opacity = '0.15';
-            chain.onclick = () => {
-                box.style.background = '#fff59d';
-                window.sound.playCorrect();
-                game.solveLevel("CLICK! Let there be birthday light!");
-            };
-        }
-    }
-);
+        question: "BOMB DEFUSAL! The Bombardier Beetle defends itself by mixing hydroquinone and hydrogen peroxide in an internal chamber. At what temperature does the boiling spray exit?",
+        type: "choice",
+        timer: 8,
+        hint: "The boiling point of water...",
+        options: [
+            { text: "100°C (212°F - Boiling Point of Water)", correct: true, msg: "Extreme Entomology! Catalase and peroxidase enzymes trigger an exothermic explosion spraying 100°C boiling toxic chemicals at predators!" },
+            { text: "50°C (122°F - Warm Bath)", correct: false, msg: "Too cool to deter praying mantises and frogs!" },
+            { text: "350°C (662°F - Molten Lead)", correct: false, msg: "That would vaporize the beetle itself!" },
+            { text: "0°C (Freezing Ice Blast)", correct: false, msg: "It is an exothermic heat reaction, not cryogenic!" }
+        ]
+    },
 
-
-window.LEVELS.push(
-    // LEVEL 21: Simon Says Trick
+    // ----------------------------------------------------
+    // LEVEL 21: Thermodynamics & Quantum Cold
+    // ----------------------------------------------------
     {
         id: 21,
         title: "Question 21",
-        question: "<span id='s-prompt' style='color:#00e5ff;'>Simon Says: Click the BLUE button!</span>",
-        type: "interactive",
-        hint: "Only click when Simon says...",
-        html: `
-            <div class="interactive-stage text-center">
-                <div style="display: flex; justify-content: center; gap: 16px; margin: 25px 0;">
-                    <button id="s-blue" class="quiz-btn" style="background:#2196f3;">BLUE</button>
-                    <button id="s-red" class="quiz-btn" style="background:#f44336;">RED</button>
-                </div>
-            </div>
-        `,
-        setup: (container, game) => {
-            const prompt = container.querySelector('#s-prompt');
-            const blue = container.querySelector('#s-blue');
-            const red = container.querySelector('#s-red');
-            let stage = 1;
-            blue.onclick = () => {
-                if (stage === 1) {
-                    window.sound.playCorrect();
-                    stage = 2;
-                    prompt.innerHTML = "<span style='color:#ff5252;'>Now click the RED button right now!</span>";
-                    setTimeout(() => {
-                        if (stage === 2) {
-                            game.solveLevel("Clever! Simon DID NOT say click Red!");
-                        }
-                    }, 3200);
-                }
-            };
-            red.onclick = () => {
-                if (stage === 2) {
-                    game.loseLife("HA! SIMON DIDN'T SAY CLICK RED! Caught you!");
-                } else {
-                    game.loseLife("Simon said BLUE, not Red!");
-                }
-            };
-        }
+        question: "What is the exact physical temperature value of Absolute Zero (0 Kelvin), the theoretical point where all classical thermal motion ceases?",
+        type: "choice",
+        hint: "Minus two hundred seventy-three point...",
+        options: [
+            { text: "-273.15°C (-459.67°F)", correct: true, msg: "Physics Precision! -273.15°C is Absolute Zero where enthalpy and entropy of a cooled ideal gas reach minimum value!" },
+            { text: "-300.00°C (-508.00°F)", correct: false, msg: "Thermodynamically impossible!" },
+            { text: "-250.50°C (-418.90°F)", correct: false, msg: "Liquid nitrogen is -196°C; absolute zero is much colder (-273.15°C)!" },
+            { text: "-459.00°C (-858.20°F)", correct: false, msg: "459 is the Fahrenheit number, not Celsius!" }
+        ]
     },
 
-    // LEVEL 22: Bizarre Obscure Biology Trivia
+    // ----------------------------------------------------
+    // LEVEL 22: Bizarre Swiss Animal Legislation
+    // ----------------------------------------------------
     {
         id: 22,
         title: "Question 22",
-        question: "Which Australian animal is the ONLY known creature in the universe to produce distinctly cubic feces?",
+        question: "Under Swiss animal welfare law (Article 13 TSchV), it is strictly illegal to own only ONE of which pet because they are classified as social creatures prone to severe loneliness?",
         type: "choice",
-        hint: "6-sided natural geometry...",
+        hint: "Chirping rodent native to the Andes...",
         options: [
-            { text: "Common Wombat", correct: true, msg: "100% biological fact! Wombats poop in cubes to stop them rolling off rocks!" },
-            { text: "Duck-billed Platypus", correct: false, msg: "Weird animal, but round poop." },
-            { text: "Tasmanian Devil", correct: false, msg: "Nope!" },
-            { text: "Echidna", correct: false, msg: "Nope!" }
+            { text: "Guinea Pig (Cavia porcellus)", correct: true, msg: "True Law! In Switzerland, owning a single guinea pig is illegal animal cruelty. There are even guinea pig matchmaking rent services if one dies!" },
+            { text: "Goldfish in a round bowl", correct: false, msg: "Round bowls are banned in Switzerland, but goldfish alone is not the famous pair law." },
+            { text: "Hamster", correct: false, msg: "Syrian hamsters are solitary and fight; guinea pigs are strictly social!" },
+            { text: "Siamese Cat", correct: false, msg: "Cats can be solitary if allowed outdoors." }
         ]
     },
 
-    // LEVEL 23: Bomb Wire Defusal
+    // ----------------------------------------------------
+    // LEVEL 23: Bomb Timer / Extreme Planetary Tilt
+    // ----------------------------------------------------
     {
         id: 23,
         title: "Question 23",
-        question: "DEFUSE THE BOMB! Cut the correct wire!",
-        type: "interactive",
-        timer: 6,
-        hint: "Blue wire has the ground bypass loop...",
-        html: `
-            <div class="interactive-stage text-center">
-                <div style="position: relative; width: 230px; height: 140px; background: #1a1a1a; border: 3px solid #666; border-radius: 10px; margin: 10px auto; display: flex; justify-content: space-around; align-items: center;">
-                    <div id="w-red" style="width: 14px; height: 110px; background: #f44336; border-radius: 7px; cursor: pointer; border: 2px solid #fff;" title="Red Wire"></div>
-                    <div id="w-blue" style="width: 14px; height: 110px; background: #2196f3; border-radius: 7px; cursor: pointer; border: 2px solid #fff;" title="Blue Wire"></div>
-                    <div id="w-yellow" style="width: 14px; height: 110px; background: #ffeb3b; border-radius: 7px; cursor: pointer; border: 2px solid #fff;" title="Yellow Wire"></div>
-                </div>
-            </div>
-        `,
-        setup: (container, game) => {
-            container.querySelector('#w-red').onclick = () => game.loseLife("BOOM! Red wire was armed!");
-            container.querySelector('#w-yellow').onclick = () => game.loseLife("BOOM! Yellow wire detonated!");
-            container.querySelector('#w-blue').onclick = () => {
-                container.querySelector('#w-blue').style.height = "20px";
-                window.sound.playCorrect();
-                game.solveLevel("SNIP! Defusal successful! Crisis averted!");
-            };
-        }
+        question: "BOMB DEFUSAL! Because the ice giant Uranus has an extreme axial tilt of 97.77 degrees, how long does a SINGLE continuous summer or winter season last on its poles?",
+        type: "choice",
+        timer: 9,
+        hint: "Uranus takes 84 Earth years to orbit the Sun once...",
+        options: [
+            { text: "21 Earth Years", correct: true, msg: "Astronomy Master! Because 84 years ÷ 4 seasons = 21 years of continuous sunlight or darkness per pole!" },
+            { text: "84 Earth Years", correct: false, msg: "84 Earth years is its entire orbital year!" },
+            { text: "6 Months", correct: false, msg: "That is Earth's polar seasons!" },
+            { text: "42 Earth Years", correct: false, msg: "42 years is half an orbit (day/night cycle at the pole)!" }
+        ]
     },
 
-    // LEVEL 24: Classic Wordplay Trick
+    // ----------------------------------------------------
+    // LEVEL 24: Antipodal Geography
+    // ----------------------------------------------------
     {
         id: 24,
         title: "Question 24",
-        question: "How many letters are in 'The Alphabet'?",
+        question: "If you dug a straight hole straight through the center of the Earth starting from the continental United States (e.g. New York or Kansas), where would you emerge?",
         type: "choice",
-        hint: "Count the characters in the quotation marks...",
+        hint: "Most landmasses on Earth have antipodes in the ocean...",
         options: [
-            { text: "26", correct: false, msg: "There are 26 letters in an alphabet, but count 'The Alphabet'!" },
-            { text: "11", correct: true, msg: "T-h-e A-l-p-h-a-b-e-t = Exactly 11 letters!" },
-            { text: "24", correct: false, msg: "Nope!" },
-            { text: "Infinite", correct: false, msg: "Too abstract!" }
+            { text: "The Southern Indian Ocean (near Australia/Antarctica)", correct: true, msg: "Geography Master! Almost all of North America's antipodal points lie in the southern Indian Ocean, not China!" },
+            { text: "Beijing, China", correct: false, msg: "The classic childhood myth is false! North America's antipode is the Indian Ocean!" },
+            { text: "Sydney, Australia", correct: false, msg: "Australia is in the Eastern/Southern hemisphere, not antipodal to the US." },
+            { text: "The Sahara Desert", correct: false, msg: "Nope!" }
         ]
     },
 
-    // LEVEL 25: Bizarre Obscure Physics Trivia
+    // ----------------------------------------------------
+    // LEVEL 25: Linguistic Isogram Oddities
+    // ----------------------------------------------------
     {
         id: 25,
         title: "Question 25",
-        question: "What is the terminal velocity of a falling raindrop at sea level?",
+        question: "What is the longest common 15-letter English word that can be spelled without repeating any single letter even once (a first-order isogram)?",
         type: "choice",
-        hint: "Rain doesn't hit as fast as a bullet...",
+        hint: "Related to legal intellectual property protection...",
         options: [
-            { text: "~9 m/s (approx 20 mph / 32 km/h)", correct: true, msg: "Aerodynamic drag caps large raindrops at ~9 m/s!" },
-            { text: "~45 m/s (approx 100 mph)", correct: false, msg: "That would puncture roofs!" },
-            { text: "~1 m/s (walking pace)", correct: false, msg: "Too slow, that is fog mist." },
-            { text: "Speed of Sound (Mach 1)", correct: false, msg: "Sonic raindrops? Yikes!" }
+            { text: "Uncopyrightable", correct: true, msg: "Linguistic Precision! 'Uncopyrightable' has exactly 15 letters and zero duplicate characters!" },
+            { text: "Incomprehensible", correct: false, msg: "Repeats 'e', 'i', and 'n' multiple times!" },
+            { text: "Dermatoglyphics", correct: false, msg: "Dermatoglyphics is also a 15-letter isogram, but 'Uncopyrightable' is the classic standard!" },
+            { text: "Subdermatoglyphic", correct: false, msg: "Subdermatoglyphic has 17 letters, but is not standard vocabulary!" }
         ]
     },
 
-    // LEVEL 26: The Escaping NEXT Button
+    // ----------------------------------------------------
+    // LEVEL 26: Bomb Timer / Macabre Medieval Medicine
+    // ----------------------------------------------------
     {
         id: 26,
         title: "Question 26",
-        question: "Click the 'NEXT' button to proceed to the next stage.",
-        type: "interactive",
-        hint: "Corner the elusive button!",
-        html: `
-            <div id="btn-arena" style="position: relative; width: 100%; height: 180px; background: rgba(0,0,0,0.2); border-radius: 12px; overflow: hidden;">
-                <button id="flee-btn" class="quiz-btn" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); transition: all 0.1s ease; background: #76ff03; color: #000; font-weight: 900;">NEXT ➔</button>
-            </div>
-        `,
-        setup: (container, game) => {
-            const btn = container.querySelector('#flee-btn');
-            const arena = container.querySelector('#btn-arena');
-            let dodges = 0;
-            const flee = () => {
-                if (dodges >= 4) {
-                    btn.innerText = "OKAY YOU WIN ➔";
-                    btn.style.background = "#ff4081";
-                    btn.style.color = "#fff";
-                    return;
-                }
-                dodges++;
-                window.sound.playBoing();
-                const maxX = arena.clientWidth - 120;
-                const maxY = arena.clientHeight - 50;
-                const x = Math.max(10, Math.floor(Math.random() * maxX));
-                const y = Math.max(10, Math.floor(Math.random() * maxY));
-                btn.style.left = x + 'px';
-                btn.style.top = y + 'px';
-                btn.style.transform = 'none';
-            };
-            btn.onmouseenter = flee;
-            btn.onclick = () => game.solveLevel("Gotcha! Elite agility!");
-        }
+        question: "BOMB DEFUSAL! In 16th and 17th century Europe, what bizarre substance was ground into powder and consumed as an elite cure-all remedy for internal bleeding and headaches?",
+        type: "choice",
+        timer: 10,
+        hint: "Known as 'Mumia' in apothecary shops...",
+        options: [
+            { text: "Ground Ancient Egyptian Mummies", correct: true, msg: "Macabre History! 'Mumia' (powdered mummies) was prescribed by royal doctors across Europe for centuries for everything from bruising to coughs!" },
+            { text: "Powdered Dinosaur Bones", correct: false, msg: "Dinosaurs were not scientifically identified until the 1800s!" },
+            { text: "Crushed Meteorite Dust", correct: false, msg: "Meteorites were thought to be thunderstones, not medicine." },
+            { text: "Dried Viper Brains", correct: false, msg: "Nope, it was actual Egyptian mummies!" }
+        ]
     },
 
-    // LEVEL 27: Bizarre Insane Legal Trivia
+    // ----------------------------------------------------
+    // LEVEL 27: Combinatorial Game Theory
+    // ----------------------------------------------------
     {
         id: 27,
         title: "Question 27",
-        question: "In the state of Alaska, it is strictly illegal to wake which animal from slumber for the express purpose of taking a selfie?",
+        question: "The 'Shannon Number', formulated by Claude Shannon in 1950, estimates the total number of possible distinct 40-move chess games to be at least:",
         type: "choice",
-        hint: "Apex predator safety law...",
+        hint: "Vastly exceeds the number of atoms in the observable universe (10^80)...",
         options: [
-            { text: "A Sleeping Grizzly / Polar Bear", correct: true, msg: "True law! Waking sleeping bears for photos is explicitly illegal in Alaska!" },
-            { text: "A Sleeping Moose Calf", correct: false, msg: "Dangerous, but not that specific statute!" },
-            { text: "A Sea Otter", correct: false, msg: "Nope!" },
-            { text: "A Bald Eagle", correct: false, msg: "Federal bird protection covers eagles, not this statute." }
+            { text: "10^120 (A 1 followed by 120 zeros)", correct: true, msg: "Math Genius! The Shannon Number (10^120) vastly dwarfs the estimated ~10^80 atoms in the entire observable universe!" },
+            { text: "10^50", correct: false, msg: "Far too small! 10^50 is dwarfed after just ~15 full moves!" },
+            { text: "10^500", correct: false, msg: "Too large for 40 moves." },
+            { text: "10^80 (Equal to universe atoms)", correct: false, msg: "10^80 is the atoms; chess permutations are ~10^120!" }
         ]
     },
 
-    // LEVEL 28: Emoji Math / PEMDAS Trap
+    // ----------------------------------------------------
+    // LEVEL 28: Crazy Fluid Dynamics
+    // ----------------------------------------------------
     {
         id: 28,
         title: "Question 28",
-        question: "Solve the birthday equation:<br><span style='font-size: 22px; color:#ffd700;'>🎂 + 🎂 = 20<br>🎂 × 🎈 = 50<br>🎈 + 🎁 × 🎂 = ?</span><br><small style='font-size:13px; opacity:0.8;'>(Note: 🎁 = 2)</small>",
+        question: "What is the name of the bizarre thermodynamic phenomenon where warm/boiling water can freeze into ice faster than cold water under specific conditions?",
         type: "choice",
-        hint: "🎂=10, 🎈=5, 🎁=2. Remember PEMDAS (Multiplication first!)",
+        hint: "Named after a Tanzanian student who observed it in ice cream class in 1963...",
         options: [
-            { text: "70", correct: false, msg: "Check order of operations! Multiply first!" },
-            { text: "25", correct: true, msg: "Math Whiz! 5 + (2 × 10) = 5 + 20 = 25!" },
-            { text: "150", correct: false, msg: "Way off!" },
-            { text: "30", correct: false, msg: "Close, but check 5 + 20!" }
+            { text: "The Mpemba Effect", correct: true, msg: "Physics Phenomenon Verified! Erasto Mpemba proved that under certain evaporation and convection conditions, hot water freezes faster!" },
+            { text: "The Bernoulli Paradox", correct: false, msg: "Bernoulli relates to fluid velocity and pressure, not freezing!" },
+            { text: "The Leidenfrost Effect", correct: false, msg: "Leidenfrost is liquid hovering on steam barriers!" },
+            { text: "The Coriolis Inversion", correct: false, msg: "Coriolis relates to planetary rotation!" }
         ]
     },
 
-    // LEVEL 29: The Gatekeeper
+    // ----------------------------------------------------
+    // LEVEL 29: The Ultimate Bizarre Fact Gatekeeper
+    // ----------------------------------------------------
     {
         id: 29,
         title: "Question 29",
-        question: "Are you 100% ready to unlock T's Birthday Grand Finale Vault?",
-        type: "interactive",
-        hint: "Click the YES button!",
-        html: `
-            <div class="interactive-stage text-center">
-                <div style="display: flex; justify-content: center; gap: 20px; margin: 30px 0;">
-                    <button id="gate-yes" class="quiz-btn pulse-anim" style="background:#00e5ff; color:#000; font-size: 20px; font-weight: 900;">YES! 🎁</button>
-                    <button id="gate-no" class="quiz-btn" style="background:#ff5252; color:#fff; font-size: 20px;">NO ❌</button>
-                </div>
-            </div>
-        `,
-        setup: (container, game) => {
-            const yes = container.querySelector('#gate-yes');
-            const no = container.querySelector('#gate-no');
-            no.onclick = () => game.loseLife("Have some confidence!");
-            yes.onclick = () => {
-                window.sound.playFanfare();
-                game.solveLevel("ENTERING LEVEL 30: THE GRAND VAULT!");
-            };
-        }
+        question: "Which everyday culinary staple contains radioactive Potassium-40, making a commercial shipping container full of them capable of triggering port radiation alarms?",
+        type: "choice",
+        hint: "Known in physics as the BED (Banana Equivalent Dose)...",
+        options: [
+            { text: "Bananas", correct: true, msg: "Nuclear Fruit Certified! Bananas contain natural Potassium-40; cargo trucks of bananas frequently trip nuclear border sensors!" },
+            { text: "Brazil Nuts", correct: false, msg: "Brazil nuts have Radium, but Potassium-40 and the official 'BED' radiation unit is named after Bananas!" },
+            { text: "Avocados", correct: false, msg: "Nope!" },
+            { text: "Cinnamon Bark", correct: false, msg: "Nope!" }
+        ]
     },
 
-    // LEVEL 30: THE FINAL BOSS - The Grand Vault
+    // ----------------------------------------------------
+    // LEVEL 30: THE FINAL BOSS - The Grand Vault of Cosmic Trivia
+    // ----------------------------------------------------
     {
         id: 30,
         title: "Level 30: THE GRAND FINALE",
-        question: "👑 CRACK THE GRAND BIRTHDAY VAULT COMBINATION! 👑",
+        question: "👑 CRACK THE TITANIUM TRIVIA VAULT TO REVEAL T'S BIRTHDAY REWARD! 👑",
         type: "interactive",
-        timer: 45,
-        hint: "Align dials to [ 7 | T | 21 ] then press UNLOCK!",
+        timer: 50,
+        hint: "Dial 1: Earth's Age (~5 Billion yrs) | Dial 2: T's Initial ('T') | Dial 3: Human Chromosome Pairs (23)",
         html: `
-            <div class="interactive-stage text-center" style="max-width: 500px; margin: 0 auto;">
-                <div class="vault-chassis" style="background: radial-gradient(circle, #37474f 0%, #212121 100%); border: 6px solid #ffd700; border-radius: 16px; padding: 20px; box-shadow: 0 0 30px rgba(255,215,0,0.4);">
-                    <div style="font-size: 45px; margin-bottom: 10px;">🔒</div>
-                    <div style="color: #ffd700; font-weight: 900; letter-spacing: 2px; margin-bottom: 15px;">
-                        TITANIUM VAULT COMBINATION
+            <div class="interactive-stage text-center" style="max-width: 520px; margin: 0 auto;">
+                <div class="vault-chassis" style="background: radial-gradient(circle, #37474f 0%, #212121 100%); border: 6px solid #ffd700; border-radius: 16px; padding: 22px; box-shadow: 0 0 35px rgba(255,215,0,0.45);">
+                    <div style="font-size: 50px; margin-bottom: 5px;">🔒 🏆 🔒</div>
+                    <div style="color: #ffd700; font-weight: 900; letter-spacing: 2px; margin-bottom: 15px; font-size: 16px;">
+                        COSMIC TRIVIA COMBINATION LOCK
                     </div>
                     
-                    <div style="display: flex; justify-content: center; gap: 15px; margin-bottom: 20px;">
+                    <div style="display: flex; justify-content: center; gap: 16px; margin-bottom: 20px;">
+                        <!-- Dial 1 -->
                         <div class="vault-dial-box">
                             <button id="dial-1-up" class="dial-btn">▲</button>
                             <div id="dial-1-val" class="dial-val">1</div>
                             <button id="dial-1-dn" class="dial-btn">▼</button>
+                            <span style="font-size: 10px; color: #aaa;">Earth Age (Gyr)</span>
                         </div>
+                        <!-- Dial 2 -->
                         <div class="vault-dial-box">
                             <button id="dial-2-up" class="dial-btn">▲</button>
                             <div id="dial-2-val" class="dial-val">A</div>
                             <button id="dial-2-dn" class="dial-btn">▼</button>
+                            <span style="font-size: 10px; color: #aaa;">Birthday Star</span>
                         </div>
+                        <!-- Dial 3 -->
                         <div class="vault-dial-box">
                             <button id="dial-3-up" class="dial-btn">▲</button>
                             <div id="dial-3-val" class="dial-val">10</div>
                             <button id="dial-3-dn" class="dial-btn">▼</button>
+                            <span style="font-size: 10px; color: #aaa;">Chromosomes</span>
                         </div>
                     </div>
 
-                    <button id="btn-vault-unlock" class="quiz-btn" style="background: #ffd700; color: #000; font-size: 18px; font-weight: 900; width: 80%; box-shadow: 0 0 15px #ffd700;">
-                        🔓 UNLOCK VAULT
+                    <button id="btn-vault-unlock" class="quiz-btn" style="background: #ffd700; color: #000; font-size: 18px; font-weight: 900; width: 85%; box-shadow: 0 0 15px #ffd700;">
+                        🔓 UNLOCK BIRTHDAY VAULT
                     </button>
-                    <div style="font-size: 12px; color: #90caf9; margin-top: 10px;">Combination Clue: Lucky #7, Birthday Star 'T', Forever Age 21</div>
+                    <div style="font-size: 12px; color: #90caf9; margin-top: 12px;">
+                        Trivia Lock Clues: [ 1: Earth ~5 Billion Yrs | 2: Birthday Initial 'T' | 3: 23 Chromosome Pairs ]
+                    </div>
                 </div>
             </div>
         `,
@@ -860,21 +567,20 @@ window.LEVELS.push(
             container.querySelector('#dial-2-up').onclick = () => { d2Idx = (d2Idx + 1) % letters.length; dial2Val.innerText = letters[d2Idx]; window.sound.playClick(); };
             container.querySelector('#dial-2-dn').onclick = () => { d2Idx = (d2Idx - 1 + letters.length) % letters.length; dial2Val.innerText = letters[d2Idx]; window.sound.playClick(); };
 
-            container.querySelector('#dial-3-up').onclick = () => { d3 = (d3 % 30) + 1; dial3Val.innerText = d3; window.sound.playClick(); };
-            container.querySelector('#dial-3-dn').onclick = () => { d3 = d3 > 1 ? d3 - 1 : 30; dial3Val.innerText = d3; window.sound.playClick(); };
+            container.querySelector('#dial-3-up').onclick = () => { d3 = (d3 % 50) + 1; dial3Val.innerText = d3; window.sound.playClick(); };
+            container.querySelector('#dial-3-dn').onclick = () => { d3 = d3 > 1 ? d3 - 1 : 50; dial3Val.innerText = d3; window.sound.playClick(); };
 
             container.querySelector('#btn-vault-unlock').onclick = () => {
-                if (d1 === 7 && letters[d2Idx] === 'T' && d3 === 21) {
+                if (d1 === 5 && letters[d2Idx] === 'T' && d3 === 23) {
                     window.sound.playVaultOpen();
                     setTimeout(() => {
                         game.triggerGrandVictory();
                     }, 500);
                 } else {
                     window.sound.playWrong();
-                    game.loseLife(`Incorrect combination: [ ${d1} | ${letters[d2Idx]} | ${d3} ]! Hint: 7 - T - 21`);
+                    game.loseLife(`Incorrect code: [ ${d1} | ${letters[d2Idx]} | ${d3} ]! Hint: 5 - T - 23`);
                 }
             };
         }
     }
-);
-
+];
