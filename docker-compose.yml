@@ -1,0 +1,14 @@
+services:
+  tbday-quiz:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tbday_impossible_quiz
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O - http://127.0.0.1:80/ || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Impossible Birthday Quiz - T's Edition</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎂</text></svg>">
+</head>
+<body>
+
+    <!-- Ambient background emoji particles -->
+    <div class="bg-decor" style="top: 8%; left: 6%; font-size: 50px;">🎂</div>
+    <div class="bg-decor" style="top: 75%; left: 8%; font-size: 60px; animation-delay: -5s;">💣</div>
+    <div class="bg-decor" style="top: 15%; right: 7%; font-size: 55px; animation-delay: -10s;">🎈</div>
+    <div class="bg-decor" style="top: 78%; right: 9%; font-size: 65px; animation-delay: -15s;">🎁</div>
+
+    <!-- Main Game Container -->
+    <main id="game-wrapper">
+        <!-- Header Bar / Status -->
+        <header class="game-header">
+            <div id="level-display" class="level-badge" title="Current Question">
+                ⭐ Level <span id="level-num">1</span> / 30
+            </div>
+
+            <!-- Lives Counter -->
+            <div class="lives-box" title="Lives Remaining">
+                <span class="life-heart" id="heart-1">❤️</span>
+                <span class="life-heart" id="heart-2">❤️</span>
+                <span class="life-heart" id="heart-3">❤️</span>
+            </div>
+
+            <!-- Quick Controls -->
+            <div class="header-controls">
+                <button id="btn-skip" class="icon-btn" title="Skip Question">⏩ Skips: <span id="skip-count">1</span></button>
+                <button id="btn-bgm" class="icon-btn" title="Toggle 8-bit BGM">🎵 BGM: Off</button>
+                <button id="btn-mute" class="icon-btn" title="Toggle Sound FX">🔊 Sound ON</button>
+                <button id="btn-restart" class="icon-btn" title="Restart Quiz">🔄 Restart</button>
+            </div>
+        </header>
+
+        <!-- Bomb Countdown Bar (shown dynamically) -->
+        <div id="bomb-timer-bar">
+            <span>💣 BOMB DEFUSAL TIME:</span>
+            <div class="fuse-progress-container">
+                <div id="fuse-fill" class="fuse-progress-fill"></div>
+            </div>
+            <span><strong id="bomb-seconds">10.0</strong>s</span>
+        </div>
+
+        <!-- Main Interactive Game Stage -->
+        <section id="stage-container">
+            <div id="start-screen">
+                <div style="font-size: 65px; margin-bottom: 10px;">🎂 💣 🥳</div>
+                <h1 class="game-title-hero">THE IMPOSSIBLE BIRTHDAY QUIZ</h1>
+                <p class="game-subtitle-hero">✨ Special Birthday Edition for T ✨</p>
+                
+                <div style="max-width: 500px; margin: 0 auto 25px; text-align: left; background: rgba(0,0,0,0.3); padding: 18px 24px; border-radius: 12px; border: 2px solid #415a77; font-size: 15px; line-height: 1.6;">
+                    <p>🎯 <strong>The Rules:</strong></p>
+                    <p>• You have <strong>3 Lives</strong>. Lose them all and it's Game Over!</p>
+                    <p>• Expect lateral thinking, bizarre trivia, bomb countdowns, and Flash-era tricks.</p>
+                    <p>• Beat all <strong>30 Levels</strong> to unlock the Grand Birthday Prize!</p>
+                </div>
+
+                <button class="start-btn pulse-anim" onclick="window.game.start()">
+                    🚀 START THE QUIZ
+                </button>
+            </div>
+        </section>
+
+        <!-- Footer Info -->
+        <footer class="game-footer">
+            <span>Engineering & Design by Randall Engineering</span>
+            <span>T-Bday Special Edition &copy; 2026</span>
+        </footer>
+    </main>
+
+    <!-- Feedback Pop-up Notification -->
+    <div id="feedback-toast"></div>
+
+    <!-- Scripts -->
+    <script src="js/sound.js"></script>
+    <script src="js/confetti.js"></script>
+    <script src="js/levels.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>

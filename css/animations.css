@@ -1,0 +1,38 @@
+@keyframes floatAround {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-25px) rotate(8deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes pulseAnim {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+    100% { transform: scale(1); }
+}
+.pulse-anim {
+    animation: pulseAnim 1.4s infinite ease-in-out;
+}
+
+@keyframes flashAlert {
+    0% { opacity: 0.9; }
+    100% { opacity: 1; }
+}
+
+@keyframes flashUrgent {
+    0% { opacity: 0.5; transform: scale(0.99); }
+    100% { opacity: 1; transform: scale(1.01); }
+}
+
+@keyframes shakeStage {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-8px); }
+    40%, 80% { transform: translateX(8px); }
+}
+.shake-it {
+    animation: shakeStage 0.4s ease-in-out;
+}
+
+@keyframes confettiFall {
+    0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
