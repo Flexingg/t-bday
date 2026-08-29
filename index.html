@@ -61,16 +61,20 @@
                 <h1 class="game-title-hero">THE IMPOSSIBLE BIRTHDAY QUIZ</h1>
                 <p class="game-subtitle-hero">✨ Special Birthday Edition for T ✨</p>
                 
-                <div style="max-width: 500px; margin: 0 auto 25px; text-align: left; background: rgba(0,0,0,0.3); padding: 18px 24px; border-radius: 12px; border: 2px solid #415a77; font-size: 15px; line-height: 1.6;">
+                <div style="max-width: 520px; margin: 0 auto 25px; text-align: left; background: rgba(0,0,0,0.3); padding: 18px 24px; border-radius: 12px; border: 2px solid #415a77; font-size: 15px; line-height: 1.6;">
                     <p>🎯 <strong>The Rules:</strong></p>
-                    <p>• You have <strong>3 Lives</strong>. Lose them all and it's Game Over!</p>
-                    <p>• Expect lateral thinking, bizarre trivia, bomb countdowns, and Flash-era tricks.</p>
-                    <p>• Beat all <strong>30 Levels</strong> to unlock the Grand Birthday Prize!</p>
+                    <p>• <strong>Classic Quiz (1-30):</strong> 3 Lives. Beat Level 30 to reveal the Grand Prize!</p>
+                    <p>• <strong>Eternal Mode (31-100):</strong> 70 bonus brutal trivia levels with <strong>NO LIVES / SUDDEN DEATH</strong>!</p>
                 </div>
 
-                <button class="start-btn pulse-anim" onclick="window.game.start()">
-                    🚀 START THE QUIZ
-                </button>
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 15px;">
+                    <button class="start-btn pulse-anim" onclick="window.game.start()">
+                        🚀 START QUIZ (Levels 1-30)
+                    </button>
+                    <button class="start-btn" style="background: linear-gradient(90deg, #ff1744, #ff9100); color: #fff; border-color: #fff;" onclick="window.game.startEternalMode()">
+                        🔥 ETERNAL MODE (70 Sudden Death Levels)
+                    </button>
+                </div>
             </div>
         </section>
     </main>
