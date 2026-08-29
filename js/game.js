@@ -194,9 +194,16 @@ class ImpossibleQuizGame {
         `;
 
         if (lvl.type === 'choice') {
+            // Shuffle answers so the correct answer appears in a random position every time
+            const shuffled = lvl.options.map((opt, i) => ({ opt, originalIdx: i }));
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+
             html += `<div class="answers-grid">`;
-            lvl.options.forEach((opt, i) => {
-                html += `<button class="quiz-btn answer-btn" data-idx="${i}">${opt.text}</button>`;
+            shuffled.forEach((item) => {
+                html += `<button class="quiz-btn answer-btn" data-idx="${item.originalIdx}">${item.opt.text}</button>`;
             });
             html += `</div>`;
         } else if (lvl.type === 'interactive') {
